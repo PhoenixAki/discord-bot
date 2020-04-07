@@ -17,5 +17,11 @@ namespace Tests
         {
             Assert.That("Bridgewater State University".GetAcronym(), Is.EqualTo("BSU"));
         }
+
+        [Test]
+        public void TestGreaterThan()
+        {
+            Assert.That(10, Is.GreaterThan(5));
+        }
     }
 }
