@@ -23,5 +23,11 @@ namespace Tests
         {
             Assert.That(10, Is.GreaterThan(5));
         }
+
+        [Test]
+        public void TestStripQuotes()
+        {
+            Assert.That("\"Test Message\"".StripQuotes(), Is.EqualTo("Test Message"));
+        }
     }
 }
