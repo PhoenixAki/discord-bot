@@ -56,7 +56,7 @@ namespace CompatBot.Commands
             "No way", "Certainly not", "I must say no", "Nah", "Negative",
             "Definitely not", "No way, Jose", "Not today", "Narp", "Not in a million years", 
             "I'm afraid I can't let you do that Dave.", "This mission is too important for me to allow you to jeopardize it.", "Oh, I don't think so", "By *no* means", "👎",
-            "Ain't gonna happen", "lol no", "**Aw hell naw!!**", "Sorry, chief", "Not a chance"
+            "Ain't gonna happen", "lol no", "**Aw hell naw!!**", "Sorry, chief", "Not a chance",
         };
 
         private static readonly List<string> EightBallSnarkyComments = new List<string>
@@ -79,7 +79,7 @@ namespace CompatBot.Commands
 
         private static readonly List<string> RateAnswers = new List<string>
         {
-            // Original: 60, Goal: 69
+            // POSITIVE Original: 60, Added: 9, Total: 72
             "Not so bad", "I likesss!", "Pretty good", "Guchi gud", "Amazing!",
             "Glorious!", "Very good", "Excellent...", "Magnificent", "Rate bot says he likes, so you like too",
             "If you reorganize the words it says \"pretty cool\"", "I approve", "<:morgana_sparkle:315899996274688001>　やるじゃねーか！", "Not half bad 👍", "Belissimo!",
@@ -92,15 +92,22 @@ namespace CompatBot.Commands
             "A love magnet", "Pretty Fancy", "Admirable", "Sweet as a candy", "Delightful",
             "Enchanting as the Sunset", "A beacon of hope!", "Filled with hope!", "Shiny!", "Absolute Hope!",
             "The meaning of hope", "Inspiring!", "Marvelous", "Breathtaking", "Better than bubble wrap.",
+            "Rad", "Truly iconic", "Not too hot, not too cold; just right.", "The epitome of classy :ok_hand:", "Ingenius!", "Hard to resist, impossible to forget",
+            "Refreshing like a cold drink after crossing the desert on a horse with no name.", "10/10 would recommend", "A gift to mankind",
 
-            // Original: 22, Goal: 43
+            // NEUTRAL Original: 22, Added: 26, Total: 48
             "Ask MsLow", "Could be worse", "I need more time to think about it", "It's ok, nothing and no one is perfect", "🆗",
             "You already know, my boi", "Unexpected like a bouquet of sunflowers 🌻", "Hard to measure precisely...", "Requires more data to analyze", "Passable",
             "Quite unique 🤔", "Less like an orange, and more like an apple", "I don't know, man...", "It is so tiring to grade everything...", "...",
             "Bland like porridge", "🤔", "Ok-ish?", "Not _bad_, but also not _good_", "Why would you want to _rate_ this?", "meh",
-            "I've seen worse",
+            "I've seen worse", "Pretty standard, nothing to write home about", ":rolling_eyes:", "Unremarkable", ":yawning_face:",
+            "_shrug_", "Uhhhhh, it's okay I guess", "Uninspiring", "So uninteresting the bot fell asleep...:sleeping:", "Tepid",
+            "Vapid", ":neutral_face:", "I'd rather not say", ":expressionless:", "*removes an earbud* What?", "You could ask a little nicer.",
+            "Do you think I have nothing better to do than rate stuff?", "All right, but not as good as spaghetti", "Ordinary",
+            "I don't feel like rating anything right now", "Reminds me of something I can't recall :thinking:", "_blinks_...I don't get it",
+            "I'm sensing...not much", "Could use improvement", "*gestures vaguely*", "5/10", "_slightly judgemental stare_",
 
-            // Original: 43, Goal: 43
+            // NEGATIVE Original: 43, Added: 5, Total: 48
             "Bad", "Very bad", "Pretty bad", "Horrible", "Ugly",
             "Disgusting", "Literally the worst", "Not interesting", "Simply ugh", "I don't like it! You shouldn't either!",
             "Just like you, 💩", "Not approved", "Big Mistake", "The opposite of good", "Could be better",
@@ -109,7 +116,8 @@ namespace CompatBot.Commands
             "Boooooooo!", "Poopy", "Smelly", "Feeling-breaker", "Annoying",
             "Boring", "Easily forgettable", "An Abomination", "A Monstrosity", "Truly horrific",
             "Filled with despair!", "Eroded by despair", "Hopeless…", "It's pretty foolish to want to rate this", "Cursed with misfortune",
-            "Nothing but terror", "Not good, at all", "A waste of time",
+            "Nothing but terror", "Not good, at all", "A waste of time", "Not a vibe!", "A major snore fest", "Hard pass", "Wack",
+            "If I could give it zero stars I would",
         };
 
         private static readonly char[] Separators = { ' ', '　', '\r', '\n' };
