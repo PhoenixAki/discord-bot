@@ -14,7 +14,7 @@ using Microsoft.EntityFrameworkCore;
 namespace CompatBot.Commands
 {
     [Group("invite"), Aliases("invites"), RequiresBotModRole]
-    [Description("Used to manage Discord invites whitelist")]
+    [Description("Used to manage Discord invites whitelist.")]
     internal sealed class Invites: BaseCommandModuleCustom
     {
         [Command("list"), Aliases("show")]
@@ -68,7 +68,7 @@ namespace CompatBot.Commands
         }
 
         [Command("whitelist"), Aliases("add", "allow"), Priority(10)]
-        [Description("Adds a new guild to the whitelist")]
+        [Description("Adds a new guild to the whitelist. Type in the guild to be added as an argument.")]
         public async Task Add(CommandContext ctx, [Description("A Discord server IDs to whitelist")] params ulong[] guildIds)
         {
             var errors = 0;
@@ -84,7 +84,7 @@ namespace CompatBot.Commands
         }
 
         [Command("whitelist"), Priority(0)]
-        [Description("Adds a new guild to the whitelist")]
+        [Description("Adds a new guild to the whitelist. Type in the guild to be added as an argument.")]
         public async Task Add(CommandContext ctx, [RemainingText, Description("An invite link or just an invite token")] string invite)
         {
             var (_, _, invites) = await ctx.Client.GetInvitesAsync(invite, tryMessageAsACode: true).ConfigureAwait(false);
@@ -108,7 +108,7 @@ namespace CompatBot.Commands
 
 
         [Command("update")]
-        [Description("Updates server invite code")]
+        [Description("Updates the server invite code.")]
         public async Task Update(CommandContext ctx, [RemainingText, Description("An invite link or an invite token")] string invite)
         {
             var (_, _, invites) = await ctx.Client.GetInvitesAsync(invite, tryMessageAsACode: true).ConfigureAwait(false);
@@ -131,7 +131,7 @@ namespace CompatBot.Commands
         }
 
         [Command("rename"), Aliases("name")]
-        [Description("Give a custom name for a Discord server")]
+        [Description("Give a custom name for a Discord server. Type in the server name and the new server name as arguments.")]
         public async Task Rename(CommandContext ctx, [Description("Filter ID to rename")] int id, [RemainingText, Description("Custom server name")] string name)
         {
             if (string.IsNullOrEmpty(name))
@@ -157,7 +157,7 @@ namespace CompatBot.Commands
         }
 
         [Command("remove"), Aliases("delete", "del")]
-        [Description("Removes a piracy filter trigger")]
+        [Description("Removes a piracy filter trigger.")]
         public async Task Remove(CommandContext ctx, [Description("Filter IDs to remove, separated with spaces")] params int[] ids)
         {
             var failedIds = new List<int>();

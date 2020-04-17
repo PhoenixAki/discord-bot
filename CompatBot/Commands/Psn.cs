@@ -18,14 +18,14 @@ using PsnClient.POCOs;
 namespace CompatBot.Commands
 {
     [Group("psn")]
-    [Description("Commands related to PSN metadata")]
+    [Description("Commands related to PSN metadata will be displayed.")]
     internal sealed partial class Psn: BaseCommandModuleCustom
     {
         private static readonly Client Client = new Client();
         private static readonly DiscordColor PsnBlue = new DiscordColor(0x0071cd);
 
         [Command("fix"), RequiresBotModRole]
-        [Description("Reset thumbnail cache for specified product")]
+        [Description("Resets the thumbnail cache for specified product.")]
         public async Task Fix(CommandContext ctx, [Description("Product ID to reset")] string productId)
         {
             var linksToRemove = new List<(string contentId, string link)>();
@@ -44,7 +44,7 @@ namespace CompatBot.Commands
         }
 
         [Command("rescan"), RequiresBotModRole]
-        [Description("Forces a full PSN rescan")]
+        [Description("Forces a full PSN rescan to happen.")]
         public async Task Rescan(CommandContext ctx)
         {
             using var db = new ThumbnailDb();
@@ -56,7 +56,7 @@ namespace CompatBot.Commands
         }
 
         [Command("search")]
-        [Description("Provides game information from PSN")]
+        [Description("Provides game information from PSN. Type in the term to be searched as an argument.")]
         public Task Search(CommandContext ctx, [Description("Maximum results to return across all regions")] int maxResults, [RemainingText] string search)
         {
             if (maxResults < 1)

@@ -14,7 +14,7 @@ using Microsoft.EntityFrameworkCore;
 namespace CompatBot.Commands
 {
     [Group("rename"), RequiresBotModRole]
-    [Description("Manage users who has forced nickname.")]
+    [Description("Manage a user who has a forced nickname.")]
     internal sealed class ForcedNicknames : BaseCommandModuleCustom
     {
         [GroupCommand]
@@ -104,7 +104,7 @@ namespace CompatBot.Commands
         }
 
         [Command("clear"), Aliases("remove")]
-        [Description("Removes nickname restriction from particular user.")]
+        [Description("Removes a nickname restriction from particular user.")]
         public async Task Remove(CommandContext ctx, [Description("Discord user to remove from forced nickname list.")] DiscordUser discordUser)
         {
             try
@@ -139,7 +139,7 @@ namespace CompatBot.Commands
         }
 
         [Command("list")]
-        [Description("Lists all users who has restricted nickname.")]
+        [Description("Lists all users who have restricted nicknames.")]
         public async Task List(CommandContext ctx)
         {
             using var db = new BotDb();

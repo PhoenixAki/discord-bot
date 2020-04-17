@@ -23,7 +23,7 @@ namespace CompatBot.Commands
 {
     [Group("explain"), Aliases("botsplain", "define")]
     [Cooldown(1, 3, CooldownBucketType.Channel)]
-    [Description("Used to manage and show explanations")]
+    [Description("Used to manage and show explanations. Type in the term you would like explained as the argument.")]
     internal sealed class Explain: BaseCommandModuleCustom
     {
         private const string TermListTitle = "Defined terms";
@@ -106,7 +106,7 @@ namespace CompatBot.Commands
         }
 
         [Command("add"), RequiresBotModRole]
-        [Description("Adds a new explanation to the list")]
+        [Description("Adds a new explanation to the list of term explanations. Type in the term of explanation and the explanation as arguments.")]
         public async Task Add(CommandContext ctx,
             [Description("A term to explain. Quote it if it contains spaces")] string term,
             [RemainingText, Description("Explanation text. Can have attachment")] string explanation)
@@ -157,7 +157,7 @@ namespace CompatBot.Commands
         }
 
         [Command("update"), Aliases("replace"), RequiresBotModRole]
-        [Description("Update explanation for a given term")]
+        [Description("Update explanation for a given term. Type in the term for updating and the new expalanation text.")]
         public async Task Update(CommandContext ctx,
             [Description("A term to update. Quote it if it contains spaces")] string term,
             [RemainingText, Description("New explanation text")] string explanation)
@@ -198,7 +198,7 @@ namespace CompatBot.Commands
 
         [Command("rename"), Priority(10), RequiresBotModRole]
         public async Task Rename(CommandContext ctx,
-            [Description("A term to rename. Remember quotes if it contains spaces")] string oldTerm,
+            [Description("Type in a term to rename and the renamed term as arguments. Remember quotes if it contains spaces")] string oldTerm,
             [Description("New term. Again, quotes")] string newTerm)
         {
             oldTerm = oldTerm.ToLowerInvariant().StripQuotes();
@@ -218,7 +218,7 @@ namespace CompatBot.Commands
         }
 
         [Command("rename"), Priority(1), RequiresBotModRole]
-        [Description("Renames a term in case you misspelled it or something")]
+        [Description("Renames a term in case you misspelled it or something. Type in the term to be renamed and the renamed term as arguments.")]
         public async Task Rename(CommandContext ctx,
             [Description("A term to rename. Remember quotes if it contains spaces")] string oldTerm,
             [Description("Constant \"to'")] string to,
@@ -231,7 +231,7 @@ namespace CompatBot.Commands
         }
 
         [Command("list")]
-        [Description("List all known terms that could be used for !explain command")]
+        [Description("List all known terms that could be used for the !explain command.")]
         public async Task List(CommandContext ctx)
         {
             var responseChannel = await ctx.GetChannelForSpamAsync().ConfigureAwait(false);
@@ -252,7 +252,7 @@ namespace CompatBot.Commands
         }
 
         [Group("remove"), Aliases("delete", "del", "erase", "obliterate"), RequiresBotModRole]
-        [Description("Removes an explanation from the definition list")]
+        [Description("Removes an explanation from the definition list. Type in the explanation term to be removed.")]
         internal sealed class Remove: BaseCommandModuleCustom
         {
             [GroupCommand]
@@ -272,7 +272,7 @@ namespace CompatBot.Commands
             }
 
             [Command("attachment"), Aliases("image", "picture", "file")]
-            [Description("Removes attachment from specified explanation. If there is no text, the whole explanation is removed")]
+            [Description("Removes attachment from specified explanation. If there is no text, the whole explanation is removed.")]
             public async Task Attachment(CommandContext ctx, [RemainingText, Description("Term to remove")] string term)
             {
                 term = term.ToLowerInvariant().StripQuotes();
@@ -294,7 +294,7 @@ namespace CompatBot.Commands
             }
 
             [Command("text"), Aliases("description")]
-            [Description("Removes explanation text. If there is no attachment, the whole explanation is removed")]
+            [Description("Removes explanation text. If there is no attachment, the whole explanation is removed.")]
             public async Task Text(CommandContext ctx, [RemainingText, Description("Term to remove")] string term)
             {
                 term = term.ToLowerInvariant().StripQuotes();
@@ -316,7 +316,7 @@ namespace CompatBot.Commands
         }
 
         [Command("dump"), Aliases("download")]
-        [Description("Returns explanation text as a file attachment")]
+        [Description("Returns explanation text as a file attachment to be viewed.")]
         public async Task Dump(CommandContext ctx, [RemainingText, Description("Term to dump **or** a link to a message containing the explanation")] string termOrLink = null)
         {
             if (string.IsNullOrEmpty(termOrLink))

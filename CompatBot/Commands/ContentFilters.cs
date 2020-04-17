@@ -156,7 +156,7 @@ namespace CompatBot.Commands
         }
 
         [Command("remove"), Aliases("delete", "del")]
-        [Description("Removes a piracy filter trigger")]
+        [Description("Removes a piracy filter trigger from the list of filters.")]
         public async Task Remove(CommandContext ctx, [Description("Filter IDs to remove, separated with spaces")] params int[] ids)
         {
             int removedFilters;

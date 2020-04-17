@@ -16,7 +16,7 @@ using Microsoft.EntityFrameworkCore;
 namespace CompatBot.Commands
 {
     [Group("warn")]
-    [Description("Command used to manage warnings")]
+    [Description("Command used to manage warnings for users to see.")]
     internal sealed partial class Warnings: BaseCommandModuleCustom
     {
         [GroupCommand] //attributes on overloads do not work, so no easy permission checks
@@ -46,7 +46,7 @@ namespace CompatBot.Commands
         }
 
         [Command("remove"), Aliases("delete", "del"), RequiresBotModRole]
-        [Description("Removes specified warnings")]
+        [Description("Removes a warning specified by the user.")]
         public async Task Remove(CommandContext ctx, [Description("Warning IDs to remove separated with space")] params int[] ids)
         {
             var interact = ctx.Client.GetInteractivity();
@@ -79,8 +79,8 @@ namespace CompatBot.Commands
         }
 
         [Command("clear"), RequiresBotModRole]
-        [Description("Removes **all** warnings for a user")]
-        public Task Clear(CommandContext ctx, [Description("User to clear warnings for")] DiscordUser user)
+        [Description("Removes **all** the warnings that a user sees.")]
+        public Task Clear(CommandContext ctx, [Description("Clears warnings for a specified user. Type in the username as the argument.")] DiscordUser user)
         {
             return Clear(ctx, user.Id);
         }
@@ -122,7 +122,7 @@ namespace CompatBot.Commands
         }
 
         [Command("revert"), RequiresBotModRole]
-        [Description("Changes the state of the warning status")]
+        [Description("Changes the state of the warning status. Type in the warning ID as the argument.")]
         public async Task Revert(CommandContext ctx, [Description("Warning ID to change")] int id)
         {
             using var db = new BotDb();

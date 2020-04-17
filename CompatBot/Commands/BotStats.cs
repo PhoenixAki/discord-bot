@@ -23,7 +23,7 @@ namespace CompatBot.Commands
     internal sealed class BotStats: BaseCommandModuleCustom
     {
         [GroupCommand, Cooldown(1, 10, CooldownBucketType.Global)]
-        [Description("Use to look at various runtime stats")]
+        [Description("Use to look at various runtime stats.")]
         public async Task Show(CommandContext ctx)
         {
             var embed = new DiscordEmbedBuilder

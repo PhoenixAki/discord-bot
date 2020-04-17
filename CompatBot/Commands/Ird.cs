@@ -12,7 +12,7 @@ namespace CompatBot.Commands
         private static readonly IrdClient Client = new IrdClient();
 
         [Command("ird"), TriggersTyping]
-        [Description("Searches IRD Library for the matching .ird files")]
+        [Description("Searches IRD Library for the matching .ird files. Type in an .ird file as an argument.")]
         public async Task Search(CommandContext ctx, [RemainingText, Description("Product code or game title to look up")] string query)
         {
             var result = await Client.SearchAsync(query, Config.Cts.Token).ConfigureAwait(false);

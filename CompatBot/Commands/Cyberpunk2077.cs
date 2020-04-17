@@ -5,7 +5,7 @@ using DSharpPlus.CommandsNext.Attributes;
 namespace CompatBot.Commands
 {
     [Group("cp77"), Aliases("cp2077", "cyberpunk2077", "cyberpunk"), Hidden]
-    [Description("Provides information about the Cyberpunk 2077 release event")]
+    [Description("Provides information about the Cyberpunk 2077 release event.")]
     internal sealed class Cyberpunk2077: EventsBaseCommand
     {
         [GroupCommand]
@@ -17,7 +17,7 @@ namespace CompatBot.Commands
             => NearestEvent(ctx, "Cyberpunk 2077");
 
         [Command("countdown")]
-        [Description("Provides countdown for Cyberpunk 2077 release event")]
+        [Description("Provides countdown for Cyberpunk 2077 release event.")]
         public Task Countdown(CommandContext ctx)
             => Cp77Countdown(ctx);
     }

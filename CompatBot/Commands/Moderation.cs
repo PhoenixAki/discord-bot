@@ -13,7 +13,7 @@ namespace CompatBot.Commands
     internal sealed partial class Moderation: BaseCommandModuleCustom
     {
         [Command("report"), RequiresWhitelistedRole]
-        [Description("Adds specified message to the moderation queue")]
+        [Description("Adds a specified message to the moderation queue for viewing.")]
         public async Task Report(CommandContext ctx, [Description("Message ID from current channel to report")] ulong messageId, [RemainingText, Description("Optional report comment")] string comment = null)
         {
             try
@@ -28,7 +28,7 @@ namespace CompatBot.Commands
         }
 
         [Command("report"), RequiresWhitelistedRole]
-        [Description("Adds specified message to the moderation queue")]
+        [Description("Adds a specified message to the moderation queue for viewing.")]
         public async Task Report(CommandContext ctx, [Description("Message link to report")] string messageLink, [RemainingText, Description("Optional report comment")] string comment = null)
         {
             try
@@ -43,7 +43,7 @@ namespace CompatBot.Commands
         }
 
         [Command("analyze"), Aliases("reanalyze", "parse", "a")]
-        [Description("Make bot to look at the attached log again")]
+        [Description("Make bot look at the attached log again. Type in the message ID as an argument.")]
         public async Task Reanalyze(CommandContext ctx, [Description("Message ID from the same channel")]ulong messageId)
         {
             try
@@ -79,7 +79,7 @@ namespace CompatBot.Commands
         }
 
         [Command("badupdate"), Aliases("bad", "recall"), RequiresBotModRole]
-        [Description("Toggles new update announcement as being bad")]
+        [Description("Toggles new update announcement as being `bad` in some form.")]
         public async Task BadUpdate(CommandContext ctx, [Description("Link to the update announcement")] string updateMessageLink)
         {
             var msg = await ctx.GetMessageAsync(updateMessageLink).ConfigureAwait(false);
