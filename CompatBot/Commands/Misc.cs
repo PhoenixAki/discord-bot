@@ -144,7 +144,7 @@ namespace CompatBot.Commands
         }
 
         [Command("roll")]
-        [Description("Generates a random number between 1 and maxValue. Can also roll dices like `2d6`. Default is 1d6")]
+        [Description("Generates a random number between 1 and a maxValue. Can also roll pairs of dice, indicated by `2d6`. The default is `1d6` for one die.")]
         public async Task Roll(CommandContext ctx, [Description("Some positive natural number")] int maxValue = 6, [RemainingText, Description("Optional text")] string comment = null)
         {
             string result = null;
@@ -157,7 +157,7 @@ namespace CompatBot.Commands
         }
 
         [Command("roll")]
-        public async Task Roll(CommandContext ctx, [RemainingText, Description("Dices to roll (i.e. 2d6+1 for two 6-sided dices with a bonus 1)")] string dices)
+        public async Task Roll(CommandContext ctx, [RemainingText, Description("Specify the number of dice to roll and their values (i.e. 2d6+1 for two 6-sided dies with a bonus 1 value)")] string dices)
         {
             var result = "";
             var embed = new DiscordEmbedBuilder();
@@ -220,7 +220,7 @@ namespace CompatBot.Commands
         }
 
         [Command("random"), Aliases("rng"), Hidden, Cooldown(1, 3, CooldownBucketType.Channel)]
-        [Description("Provides random stuff")]
+        [Description("Provides random comments depending on what you say.")]
         public async Task RandomShit(CommandContext ctx, string stuff)
         {
             stuff = stuff?.ToLowerInvariant() ?? "";
@@ -257,7 +257,7 @@ namespace CompatBot.Commands
         }
 
         [Command("8ball"), Cooldown(20, 60, CooldownBucketType.Channel)]
-        [Description("Provides a ~~random~~ objectively best answer to your question")]
+        [Description("Ask the magic 8 ball a question! Provides a ~~random~~ answer to your question.")]
         public async Task EightBall(CommandContext ctx, [RemainingText, Description("A yes/no question")] string question)
         {
             question = question?.ToLowerInvariant() ?? "";
@@ -276,7 +276,7 @@ namespace CompatBot.Commands
         }
 
         [Command("when"), Hidden, Cooldown(20, 60, CooldownBucketType.Channel)]
-        [Description("Provides advanced clairvoyance services to predict the time frame for specified event with maximum accuracy")]
+        [Description("Predicts the time frame of a specified event that you indicate.")]
         public async Task When(CommandContext ctx, [RemainingText, Description("Something to happen")] string whatever = "")
         {
             var question = whatever?.Trim().TrimEnd('?').ToLowerInvariant() ?? "";

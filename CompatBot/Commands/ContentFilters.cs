@@ -86,7 +86,7 @@ namespace CompatBot.Commands
         }
 
         [Command("add"), Aliases("create")]
-        [Description("Adds a new content filter")]
+        [Description("Adds a new content filter to the list of filters.")]
         public async Task Add(CommandContext ctx, [RemainingText, Description("A plain string to match")] string trigger)
         {
             using var db = new BotDb();
@@ -127,7 +127,7 @@ namespace CompatBot.Commands
         }
 
         [Command("edit"), Aliases("fix", "update", "change")]
-        [Description("Modifies the specified content filter")]
+        [Description("Modifies a content filter that the user specifies.")]
         public async Task Edit(CommandContext ctx, [Description("Filter ID")] int id)
         {
             using var db = new BotDb();
