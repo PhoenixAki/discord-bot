@@ -1,12 +1,7 @@
 {
   "profiles": {
     "default": {
-      "commandName": "Project",
-      "environmentVariables": {
-        "BotGuildId": "692137772944719872",
-        "BotAdminId": "admin-id-here",
-        "Token": "token-here"
-      }
+      "commandName": "Project"
     }
   }
 }
