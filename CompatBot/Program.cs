@@ -147,7 +147,6 @@ namespace CompatBot
                 commands.RegisterCommands<Psn>();
                 commands.RegisterCommands<Invites>();
                 commands.RegisterCommands<Moderation>();
-                commands.RegisterCommands<Ird>();
                 commands.RegisterCommands<BotMath>();
                 commands.RegisterCommands<Pr>();
                 commands.RegisterCommands<Events>();
@@ -157,6 +156,7 @@ namespace CompatBot
                 commands.RegisterCommands<BotStats>();
                 commands.RegisterCommands<Syscall>();
                 commands.RegisterCommands<ForcedNicknames>();
+                commands.RegisterCommands<Check>();
 
                 if (!string.IsNullOrEmpty(Config.AzureComputerVisionKey))
                     commands.RegisterCommands<Vision>();
