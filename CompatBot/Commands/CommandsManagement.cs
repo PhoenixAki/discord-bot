@@ -15,7 +15,7 @@ namespace CompatBot.Commands
     public sealed class CommandsManagement : BaseCommandModule
     {
         [Command("list"), Aliases("show")]
-        [Description("Lists the disabled commands")]
+        [Description("Lists the disabled commands for the user to view.")]
         public async Task List(CommandContext ctx)
         {
             var list = DisabledCommandsProvider.Get();
@@ -31,7 +31,7 @@ namespace CompatBot.Commands
         }
 
         [Command("disable"), Aliases("add")]
-        [Description("Disables the specified command")]
+        [Description("Disables a command that the user specifies.")]
         public async Task Disable(CommandContext ctx, [RemainingText, Description("Fully qualified command to disable, e.g. `explain add` or `sudo mod *`")] string command)
         {
             var isPrefix = command.EndsWith('*');
@@ -93,7 +93,7 @@ namespace CompatBot.Commands
         }
 
         [Command("enable"), Aliases("reenable", "remove", "delete", "del", "clear")]
-        [Description("Enables the specified command")]
+        [Description("Enables a command that the user specifies.")]
         public async Task Enable(CommandContext ctx, [RemainingText, Description("Fully qualified command to enable, e.g. `explain add` or `sudo mod *`")] string command)
         {
             if (command == "*")

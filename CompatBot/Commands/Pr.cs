@@ -16,7 +16,7 @@ using Microsoft.TeamFoundation.Build.WebApi;
 namespace CompatBot.Commands
 {
     [Group("pr"), TriggersTyping]
-    [Description("Commands to list opened pull requests information")]
+    [Description("Lists opened pull requests information for viewing.")]
     internal sealed class Pr: BaseCommandModuleCustom
     {
         private static readonly GithubClient.Client githubClient = new GithubClient.Client();

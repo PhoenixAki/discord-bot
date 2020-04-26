@@ -6,7 +6,7 @@ using DSharpPlus.CommandsNext.Attributes;
 namespace CompatBot.Commands
 {
     [Group("event"), Aliases("events", "e")]
-    [Description("Provides information about the various events in the game industry")]
+    [Description("Provides information about the various events in the game industry. Type in an event name as an argument.")]
     internal sealed class Events: EventsBaseCommand
     {
         [GroupCommand]
@@ -14,48 +14,48 @@ namespace CompatBot.Commands
             => NearestEvent(ctx, eventName);
 
         [Command("add"), RequiresBotModRole]
-        [Description("Adds a new entry to the schedule")]
+        [Description("Adds a new entry to the schedule.")]
         public Task AddGeneric(CommandContext ctx)
             => Add(ctx);
 
         [Command("remove"), Aliases("delete", "del"), RequiresBotModRole]
-        [Description("Removes schedule entries with the specified IDs")]
+        [Description("Removes schedule entries with the specified IDs.")]
         public Task RemoveGeneric(CommandContext ctx, [Description("Event IDs to remove separated with space")] params int[] ids)
             => Remove(ctx, ids);
 
         [Command("clean"), Aliases("cleanup", "Clear"), RequiresBotModRole]
-        [Description("Removes past events")]
+        [Description("Removes past events.")]
         public Task ClearGeneric(CommandContext ctx, [Description("Optional year to remove, by default everything before current year")] int? year = null)
              => Clear(ctx, year);
 
         [Command("edit"), Aliases("adjust", "change", "modify", "update"), RequiresBotModRole]
-        [Description("Updates the event entry properties")]
+        [Description("Updates the event entry properties using an event ID.")]
         public Task AdjustGeneric(CommandContext ctx, [Description("Event ID")] int id)
             => Update(ctx, id);
 
         [Command("schedule"), Aliases("show", "list")]
-        [Description("Outputs current schedule")]
+        [Description("Outputs current schedule.")]
         public Task ListGeneric(CommandContext ctx)
             => List(ctx, null, null);
 
         [Command("schedule")]
         public Task ListGeneric(CommandContext ctx,
-            [Description("Optional year to list")] int year)
+            [Description("Optional year to list.")] int year)
             => List(ctx, null, year);
 
         [Command("schedule")]
         public Task ListGeneric(CommandContext ctx,
-            [Description("Optional event name to list schedule for")] string eventName)
+            [Description("Optional event name to list schedule for.")] string eventName)
             => List(ctx, eventName, null);
 
         [Command("schedule")]
         public Task ListGeneric(CommandContext ctx,
-            [Description("Optional event name to list schedule for")] string eventName,
+            [Description("Optional event name to list schedule for.")] string eventName,
             [Description("Optional year to list")] int year)
             => List(ctx, eventName, year);
 
         [Command("countdown")]
-        [Description("Provides countdown for the nearest known event")]
+        [Description("Provides countdown for the nearest known event. Type in the event as the argument.")]
         public Task Countdown(CommandContext ctx, string eventName = null)
             => NearestEvent(ctx, eventName);
     }

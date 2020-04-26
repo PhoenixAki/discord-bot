@@ -15,7 +15,7 @@ using Microsoft.EntityFrameworkCore;
 namespace CompatBot.Commands
 {
     [Group("syscall"), Aliases("syscalls", "cell", "sce", "scecall", "scecalls"), LimitedToSpamChannel]
-    [Description("Provides information about syscalls used by games")]
+    [Description("Provides information about syscalls used by games. Type in the product ID as the argument.")]
     internal sealed class Syscall: BaseCommandModuleCustom
     {
         [GroupCommand]
@@ -112,7 +112,7 @@ namespace CompatBot.Commands
         }
 
         [Command("rename"), RequiresBotModRole]
-        [Description("Provides an option to rename function call")]
+        [Description("Provides an option to rename function call. Type in the old funtion name and the new function name as arguments.")]
         public async Task Rename(CommandContext ctx, [Description("Old function name")] string oldFunctionName, [Description("New function name")] string newFunctionName)
         {
             using var db = new ThumbnailDb();

@@ -8,7 +8,7 @@ using org.mariuszgromada.math.mxparser;
 namespace CompatBot.Commands
 {
     [Group("math")]
-    [Description("Math, here you go Juhn. Use `math help` for syntax help")]
+    [Description("Helps you solve simple math equations. Use `math help` for syntax help.")]
     internal sealed class BotMath : BaseCommandModuleCustom
     {
         [GroupCommand, Priority(9)]
@@ -41,7 +41,7 @@ namespace CompatBot.Commands
         }
 
         [Command("help"), LimitedToSpamChannel, Cooldown(1, 5, CooldownBucketType.Channel)]
-        [Description("General math expression help, or description of specific math word")]
+        [Description("Helps you understand general math expressions or descriptions of specific math words.")]
         public Task Help(CommandContext ctx)
         {
             return ctx.RespondAsync("Help for all the features and built-in constants and functions could be found at <https://mathparser.org/mxparser-math-collection/>");

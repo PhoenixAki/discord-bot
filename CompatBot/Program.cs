@@ -355,7 +355,14 @@ namespace CompatBot
             catch (Exception e)
             {
                 if (!Config.inMemorySettings.ContainsKey("shutdown"))
+                {
+                    var st = new StackTrace(e, true);
+                    var frame = st.GetFrame(0);
+                    var line = frame.GetFileLineNumber();
+                    Config.Log.Info("EXCEPTION STACK TRACE: " + st);
+                    Config.Log.Info("PROBLEMATIC LINE: " + line);
                     Config.Log.Fatal(e, "Experienced catastrophic failure, attempting to restart...");
+                }
             }
             finally
             {

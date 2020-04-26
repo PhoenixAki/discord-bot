@@ -57,7 +57,7 @@ namespace CompatBot.Commands
         }
 
         [Command("compat"), Aliases("c", "compatibility")]
-        [Description("Searches the compatibility database, USE: !compat search term")]
+        [Description("Searches the compatibility database to let you know if the specified term is compatible with your system, USE: !compat search term")]
         public async Task Compat(CommandContext ctx, [RemainingText, Description("Game title to look up")] string title)
         {
             title = title?.TrimEager().Truncate(40);
@@ -101,7 +101,7 @@ namespace CompatBot.Commands
         }
 
         [Group("latest"), TriggersTyping]
-        [Description("Provides links to the latest RPCS3 build")]
+        [Description("Provides links to the latest RPCS3 build.")]
         [Cooldown(1, 30, CooldownBucketType.Channel)]
         public sealed class UpdatesCheck: BaseCommandModuleCustom
         {
@@ -112,14 +112,14 @@ namespace CompatBot.Commands
             }
 
             [Command("since")]
-            [Description("Show additional info about changes since specified update")]
+            [Description("Show additional info about changes since specified update.")]
             public Task Since(CommandContext ctx, [Description("Commit hash of the update, such as `46abe0f31`")] string commit)
             {
                 return CheckForRpcs3Updates(ctx.Client, ctx.Channel, commit);
             }
 
             [Command("clear"), RequiresBotModRole]
-            [Description("Clears update info cache that is used to post new build announcements")]
+            [Description("Clears update info cache that is used to post new build announcements.")]
             public Task Clear(CommandContext ctx)
             {
                 lastUpdateInfo = null;
@@ -127,7 +127,7 @@ namespace CompatBot.Commands
             }
 
             [Command("restore"), RequiresBotModRole]
-            [Description("Regenerates update announcement for specified bot message and build hash")]
+            [Description("Regenerates update announcement for specified bot message and build hash.")]
             public async Task Restore(CommandContext ctx, string botMsgLink, string updateCommitHash)
             {
                 var botMsg = await ctx.GetMessageAsync(botMsgLink).ConfigureAwait(false);

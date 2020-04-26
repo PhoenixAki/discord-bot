@@ -15,11 +15,11 @@ using Microsoft.EntityFrameworkCore;
 namespace CompatBot.Commands
 {
     [Group("sudo"), RequiresBotSudoerRole]
-    [Description("Used to manage bot moderators and sudoers")]
+    [Description("Used to manage bot moderators and sudoers. An ultimate command, if you will.")]
     internal sealed partial class Sudo : BaseCommandModuleCustom
     {
         [Command("say"), Priority(10)]
-        [Description("Make bot say things, optionally in a specific channel")]
+        [Description("Make the bot say particular things in a specific channel.")]
         public async Task Say(CommandContext ctx, [Description("Discord channel (can use just #name in DM)")] DiscordChannel channel, [RemainingText, Description("Message text to send")] string message)
         {
             if (channel.Type != ChannelType.Text)
@@ -43,14 +43,14 @@ namespace CompatBot.Commands
         }
 
         [Command("say"), Priority(10)]
-        [Description("Make bot say things, optionally in a specific channel")]
+        [Description("Make the bot say particular things in a specific channel.")]
         public Task Say(CommandContext ctx, [RemainingText, Description("Message text to send")] string message)
         {
             return Say(ctx, ctx.Channel, message);
         }
 
         [Command("react")]
-        [Description("Add reactions to the specified message")]
+        [Description("Add reactions or emoticons to the specified message.")]
         public async Task React(
             CommandContext ctx,
             [Description("Message link")] string messageLink,
@@ -105,7 +105,7 @@ namespace CompatBot.Commands
         }
 
         [Command("log"), RequiresDm]
-        [Description("Uploads current log file as an attachment")]
+        [Description("Uploads the current log file as an attachment that can be viewed.")]
         public async Task Log(CommandContext ctx)
         {
             try
@@ -135,7 +135,7 @@ namespace CompatBot.Commands
         }
 
         [Command("dbbackup"), Aliases("thumbs", "dbb")]
-        [Description("Uploads current Thumbs.db file as an attachment")]
+        [Description("Uploads current Thumbs.db file as an attachment to be viewed.")]
         public async Task ThumbsBackup(CommandContext ctx)
         {
             try
