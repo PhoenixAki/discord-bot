@@ -11,7 +11,7 @@ namespace CompatBot.Commands
     internal sealed class Quiz: BaseCommandModuleCustom
     {
         int validCheck = 0;
-        [Command(), Aliases("test")]
+        [GroupCommand]
         public async Task QuestionOne(CommandContext ctx)
         {
             bool repeat = true;
