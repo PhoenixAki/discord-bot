@@ -157,6 +157,7 @@ namespace CompatBot
                 commands.RegisterCommands<Syscall>();
                 commands.RegisterCommands<ForcedNicknames>();
                 commands.RegisterCommands<Check>();
+                commands.RegisterCommands<Quiz>();
 
                 if (!string.IsNullOrEmpty(Config.AzureComputerVisionKey))
                     commands.RegisterCommands<Vision>();
