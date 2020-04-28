@@ -158,6 +158,7 @@ namespace CompatBot
                 commands.RegisterCommands<ForcedNicknames>();
                 commands.RegisterCommands<Check>();
                 commands.RegisterCommands<Quiz>();
+                commands.RegisterCommands<SyncRoles>();
 
                 if (!string.IsNullOrEmpty(Config.AzureComputerVisionKey))
                     commands.RegisterCommands<Vision>();
@@ -345,6 +346,11 @@ namespace CompatBot
                     Psn.Check.MonitorFwUpdates(client, Config.Cts.Token)
                 );
 
+                Config.Log.Debug("Running sync check");
+                var backgroundMemberCheck = Task.WhenAll(
+                    SyncRoles.GetAllMemberRoles(client)
+                );
+
                 while (!Config.Cts.IsCancellationRequested)
                 {
                     if (client.Ping > 1000)
@@ -352,6 +358,7 @@ namespace CompatBot
                     await Task.Delay(TimeSpan.FromMinutes(1), Config.Cts.Token).ContinueWith(dt => {/* in case it was cancelled */}, TaskScheduler.Default).ConfigureAwait(false);
                 }
                 await backgroundTasks.ConfigureAwait(false);
+                await backgroundMemberCheck.ConfigureAwait(false);
             }
             catch (Exception e)
             {
