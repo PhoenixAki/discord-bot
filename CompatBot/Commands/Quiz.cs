@@ -4,7 +4,6 @@ using DSharpPlus.CommandsNext;
 using DSharpPlus.CommandsNext.Attributes;
 using DSharpPlus.Interactivity;
 using DSharpPlus.Entities;
-using DSharpPlus.EventArgs;
 
 namespace CompatBot.Commands
 {
@@ -12,7 +11,6 @@ namespace CompatBot.Commands
     [Description("Quiz a user undergoes when joining a server")]
     internal sealed class Quiz: BaseCommandModuleCustom
     {
-        int validCheck = 0;
         [GroupCommand]
         public async Task QuestionOne(CommandContext ctx)
         {
