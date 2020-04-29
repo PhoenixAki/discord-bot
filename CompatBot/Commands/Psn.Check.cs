@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using CompatBot.EventHandlers;
 using CompatBot.Database;
 using CompatBot.Utils.ResultFormatters;
 using DSharpPlus;
@@ -15,6 +16,7 @@ namespace CompatBot.Commands
     internal sealed partial class Psn
     {
         [Group("check")]
+        [BlacklistCheck]
         [Description("Commands to check for various stuff on PSN")]
         public sealed class Check: BaseCommandModuleCustom
         {

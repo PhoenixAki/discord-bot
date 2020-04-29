@@ -3,6 +3,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CompatApiClient.Utils;
+using CompatBot.EventHandlers;
 using CompatBot.Commands.Attributes;
 using CompatBot.Utils;
 using CompatBot.Utils.Extensions;
@@ -16,6 +17,7 @@ using Microsoft.TeamFoundation.Build.WebApi;
 namespace CompatBot.Commands
 {
     [Group("pr"), TriggersTyping]
+    [BlacklistCheck]
     [Description("Lists opened pull requests information for viewing.")]
     internal sealed class Pr: BaseCommandModuleCustom
     {

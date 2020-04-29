@@ -6,16 +6,19 @@ using CompatBot.Utils;
 using DSharpPlus.CommandsNext;
 using DSharpPlus.CommandsNext.Attributes;
 using DSharpPlus.Entities;
+using CompatBot.EventHandlers;
 
 namespace CompatBot.Commands
 {
     internal partial class Sudo
     {
         [Group("mod")]
+        [BlacklistCheck]
         [Description("Used to manage bot moderators")]
         public sealed class Mod : BaseCommandModuleCustom
         {
             [Command("add")]
+            [BlacklistCheck]
             [Description("Adds a new moderator")]
             public async Task Add(CommandContext ctx, [Description("Discord user to add to the bot mod list")] DiscordMember user)
             {
@@ -31,6 +34,7 @@ namespace CompatBot.Commands
             }
 
             [Command("remove"), Aliases("delete", "del")]
+            [BlacklistCheck]
             [Description("Removes a moderator")]
             public async Task Remove(CommandContext ctx, [Description("Discord user to remove from the bot mod list")] DiscordMember user)
             {

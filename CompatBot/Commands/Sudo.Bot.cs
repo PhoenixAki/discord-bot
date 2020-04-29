@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using CompatBot.Database;
 using CompatBot.Database.Providers;
 using CompatBot.Utils;
+using CompatBot.EventHandlers;
 using DSharpPlus.CommandsNext;
 using DSharpPlus.CommandsNext.Attributes;
 using DSharpPlus.Entities;
@@ -14,6 +15,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CompatBot.Commands
 {
+    [BlacklistCheck]
     internal partial class Sudo
     {
         private static readonly SemaphoreSlim lockObj = new SemaphoreSlim(1, 1);

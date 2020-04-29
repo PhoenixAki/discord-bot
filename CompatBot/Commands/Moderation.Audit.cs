@@ -19,6 +19,7 @@ namespace CompatBot.Commands
     internal sealed partial class Moderation
     {
         [Group("audit"), RequiresBotModRole]
+        [BlacklistCheck]
         [Description("Commands to audit server things")]
         public sealed class Audit: BaseCommandModuleCustom
         {

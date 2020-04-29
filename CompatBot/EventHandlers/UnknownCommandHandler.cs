@@ -82,8 +82,9 @@ namespace CompatBot.EventHandlers
                             select v
                         )
                         .FirstOrDefault();
-                    if (cmdMatch.w > 0)
+                    if (cmdMatch.w > 0){
                         await e.Context.Channel.SendMessageAsync($"Did you mean to use `!{cmdMatch.cmd}` command?").ConfigureAwait(false);
+                    }
                 }
                 return;
             }

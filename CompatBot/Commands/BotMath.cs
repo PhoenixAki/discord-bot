@@ -4,10 +4,12 @@ using CompatBot.Commands.Attributes;
 using DSharpPlus.CommandsNext;
 using DSharpPlus.CommandsNext.Attributes;
 using org.mariuszgromada.math.mxparser;
+using CompatBot.EventHandlers;
 
 namespace CompatBot.Commands
 {
     [Group("math")]
+    [BlacklistCheck]
     [Description("Helps you solve simple math equations. Use `math help` for syntax help.")]
     internal sealed class BotMath : BaseCommandModuleCustom
     {

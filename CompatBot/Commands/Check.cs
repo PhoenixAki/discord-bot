@@ -17,6 +17,7 @@ using IrdLibraryClient;
 namespace CompatBot.Commands
 {
     [Group("Check")]
+    [BlacklistCheck]
     [Description("Command to just test the creation of commands")]
     internal sealed class Check: BaseCommandModuleCustom
     {

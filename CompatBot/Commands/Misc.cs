@@ -15,6 +15,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CompatBot.Commands
 {
+    [BlacklistCheck]
     internal sealed class Misc: BaseCommandModuleCustom
     {
         private readonly Random rng = new Random();

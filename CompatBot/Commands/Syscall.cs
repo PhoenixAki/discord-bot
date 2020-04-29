@@ -15,6 +15,7 @@ using Microsoft.EntityFrameworkCore;
 namespace CompatBot.Commands
 {
     [Group("syscall"), Aliases("syscalls", "cell", "sce", "scecall", "scecalls"), LimitedToSpamChannel]
+    [BlacklistCheck]
     [Description("Provides information about syscalls used by games. Type in the product ID as the argument.")]
     internal sealed class Syscall: BaseCommandModuleCustom
     {

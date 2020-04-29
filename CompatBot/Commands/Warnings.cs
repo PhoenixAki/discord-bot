@@ -12,10 +12,12 @@ using DSharpPlus.CommandsNext.Attributes;
 using DSharpPlus.Entities;
 using DSharpPlus.Interactivity;
 using Microsoft.EntityFrameworkCore;
+using CompatBot.EventHandlers;
 
 namespace CompatBot.Commands
 {
     [Group("warn")]
+    [BlacklistCheck]
     [Description("Command used to manage warnings for users to see.")]
     internal sealed partial class Warnings: BaseCommandModuleCustom
     {

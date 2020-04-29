@@ -7,6 +7,7 @@ using CompatBot.Database.Providers;
 using CompatBot.Utils;
 using DSharpPlus.CommandsNext;
 using DSharpPlus.CommandsNext.Attributes;
+using CompatBot.EventHandlers;
 using Microsoft.EntityFrameworkCore;
 
 namespace CompatBot.Commands
@@ -16,6 +17,7 @@ namespace CompatBot.Commands
         public sealed partial class Bot
         {
             [Group("config"), RequiresBotSudoerRole]
+            [BlacklistCheck]
             [Description("Commands to set or clear bot configuration variables")]
             public sealed partial class Configuration : BaseCommandModule
             {

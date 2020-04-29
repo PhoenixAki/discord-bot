@@ -10,6 +10,7 @@ using CompatBot.Database;
 using CompatBot.Database.Providers;
 using CompatBot.Utils;
 using CompatBot.Utils.Extensions;
+using CompatBot.EventHandlers;
 using DSharpPlus.CommandsNext;
 using DSharpPlus.CommandsNext.Attributes;
 using DSharpPlus.Entities;
@@ -21,6 +22,7 @@ using Exception = System.Exception;
 namespace CompatBot.Commands
 {
     [Group("filters"), Aliases("piracy", "filter"), RequiresBotSudoerRole, RequiresDm]
+    [BlacklistCheck]
     [Description("Used to manage content filters. **Works only in DM**")]
     internal sealed class ContentFilters: BaseCommandModuleCustom
     {

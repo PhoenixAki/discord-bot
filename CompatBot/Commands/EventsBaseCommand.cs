@@ -14,9 +14,11 @@ using DSharpPlus.Entities;
 using DSharpPlus.EventArgs;
 using DSharpPlus.Interactivity;
 using Microsoft.EntityFrameworkCore;
+using CompatBot.EventHandlers;
 
 namespace CompatBot.Commands
 {
+    [BlacklistCheck]
     internal class EventsBaseCommand: BaseCommandModuleCustom
     {
         private static readonly TimeSpan InteractTimeout = TimeSpan.FromMinutes(5);

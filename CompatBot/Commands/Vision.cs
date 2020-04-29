@@ -10,6 +10,7 @@ using DSharpPlus.CommandsNext.Attributes;
 using DSharpPlus.Entities;
 using Microsoft.Azure.CognitiveServices.Vision.ComputerVision;
 using Microsoft.Azure.CognitiveServices.Vision.ComputerVision.Models;
+using CompatBot.EventHandlers;
 
 namespace CompatBot.Commands
 {
@@ -25,6 +26,7 @@ namespace CompatBot.Commands
             );
 
         [Command("describe"), RequiresSupporterRole]
+        [BlacklistCheck]
         [Description("Generates an image description from the attached image, or from the url")]
         public async Task Describe(CommandContext ctx)
         {
