@@ -2,10 +2,12 @@
 using CompatBot.Commands.Attributes;
 using DSharpPlus.CommandsNext;
 using DSharpPlus.CommandsNext.Attributes;
+using CompatBot.EventHandlers;
 
 namespace CompatBot.Commands
 {
     [Group("event"), Aliases("events", "e")]
+    [BlacklistCheck]
     [Description("Provides information about the various events in the game industry. Type in an event name as an argument.")]
     internal sealed class Events: EventsBaseCommand
     {

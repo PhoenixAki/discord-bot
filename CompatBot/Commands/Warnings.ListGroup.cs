@@ -11,16 +11,19 @@ using DSharpPlus.CommandsNext;
 using DSharpPlus.CommandsNext.Attributes;
 using DSharpPlus.CommandsNext.Converters;
 using DSharpPlus.Entities;
+using CompatBot.EventHandlers;
 
 namespace CompatBot.Commands
 {
     internal sealed partial class Warnings
     {
         [Group("list"), Aliases("show")]
+        [BlacklistCheck]
         [Description("Allows to list warnings in various ways. Users can only see their own warnings.")]
         public class ListGroup : BaseCommandModuleCustom
         {
             [GroupCommand, Priority(10)]
+            [BlacklistCheck]
             [Description("Show warning list for a user. Default is to show warning list for yourself")]
             public async Task List(CommandContext ctx, [Description("Discord user to list warnings for")] DiscordUser user)
             {

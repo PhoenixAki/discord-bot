@@ -4,6 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CompatBot.Commands.Attributes;
 using CompatBot.Database.Providers;
+using CompatBot.EventHandlers;
 using CompatBot.Utils;
 using DSharpPlus.CommandsNext;
 using DSharpPlus.CommandsNext.Attributes;
@@ -11,6 +12,7 @@ using DSharpPlus.CommandsNext.Attributes;
 namespace CompatBot.Commands
 {
     [Group("commands"), Aliases("command"), RequiresBotModRole]
+    [BlacklistCheck]
     [Description("Used to enable and disable bot commands at runtime")]
     public sealed class CommandsManagement : BaseCommandModule
     {

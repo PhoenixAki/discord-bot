@@ -157,6 +157,7 @@ namespace CompatBot
                 commands.RegisterCommands<Syscall>();
                 commands.RegisterCommands<ForcedNicknames>();
                 commands.RegisterCommands<Check>();
+                commands.RegisterCommands<Blacklist>();
                 commands.RegisterCommands<Quiz>();
                 commands.RegisterCommands<SyncRoles>();
 

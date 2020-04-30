@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using CompatBot.Commands.Attributes;
 using CompatBot.Database;
 using CompatBot.Utils;
+using CompatBot.EventHandlers;
 using DSharpPlus;
 using DSharpPlus.CommandsNext;
 using DSharpPlus.CommandsNext.Attributes;
@@ -14,6 +15,7 @@ using Microsoft.EntityFrameworkCore;
 namespace CompatBot.Commands
 {
     [Group("rename"), RequiresBotModRole]
+    [BlacklistCheck]
     [Description("Manage a user who has a forced nickname.")]
     internal sealed class ForcedNicknames : BaseCommandModuleCustom
     {

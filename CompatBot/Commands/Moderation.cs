@@ -10,6 +10,7 @@ using DSharpPlus.Entities;
 
 namespace CompatBot.Commands
 {
+    [BlacklistCheck]
     internal sealed partial class Moderation: BaseCommandModuleCustom
     {
         [Command("report"), RequiresWhitelistedRole]

@@ -26,6 +26,7 @@ using Newtonsoft.Json;
 
 namespace CompatBot.Commands
 {
+    [BlacklistCheck]
     internal sealed class CompatList : BaseCommandModuleCustom
     {
         private static readonly Client client = new Client();

@@ -50,7 +50,11 @@ namespace CompatBot
         public static ulong BotSpamId => config.GetValue(nameof(BotSpamId), 701209560647467061ul);                    // #bot-spam; this is a dedicated channel for bot abuse
         public static ulong BotLogId => config.GetValue(nameof(BotLogId), 701209560647467061ul);                      // #bot-log; a private channel for admin mod queue
         public static ulong BotRulesChannelId => config.GetValue(nameof(BotRulesChannelId), 701209560647467061ul);    // #rules-info; used to give links to rules
+<<<<<<< HEAD
         public static ulong ThumbnailSpamId => config.GetValue(nameof(ThumbnailSpamId), 475678410098606100ul);        // #bot-data; used for whatever bot needs to keep (cover embeds, etc)
+=======
+        public static ulong ThumbnailSpamId => config.GetValue(nameof(ThumbnailSpamId), 701209560647467061ul);        // #bot-data; used for whatever bot needs to keep (cover embeds, etc)
+>>>>>>> master
         public static ulong BotAdminId => config.GetValue(nameof(BotAdminId), 267367850706993152ul);                  // discord user id for a bot admin
         public static int ProductCodeLookupHistoryThrottle => config.GetValue(nameof(ProductCodeLookupHistoryThrottle), 7);
         public static int TopLimit => config.GetValue(nameof(TopLimit), 15);
@@ -176,6 +180,8 @@ namespace CompatBot
                 "Spectators",
                 "Nitro Booster",
             };
+
+            public static HashSet<DiscordUser> blacklistedIds = new HashSet<DiscordUser>();  // commands called by DiscordUsers in this list will be ignored
         }
 
         static Config()

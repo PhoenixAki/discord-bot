@@ -1,10 +1,12 @@
 ﻿using System.Threading.Tasks;
 using DSharpPlus.CommandsNext;
 using DSharpPlus.CommandsNext.Attributes;
+using CompatBot.EventHandlers;
 
 namespace CompatBot.Commands
 {
     [Group("cp77"), Aliases("cp2077", "cyberpunk2077", "cyberpunk"), Hidden]
+    [BlacklistCheck]
     [Description("Provides information about the Cyberpunk 2077 release event.")]
     internal sealed class Cyberpunk2077: EventsBaseCommand
     {

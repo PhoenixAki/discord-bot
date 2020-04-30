@@ -22,6 +22,7 @@ using Microsoft.Extensions.Caching.Memory;
 namespace CompatBot.Commands
 {
     [Group("explain"), Aliases("botsplain", "define")]
+    [BlacklistCheck]
     [Cooldown(1, 3, CooldownBucketType.Channel)]
     [Description("Used to manage and show explanations. Type in the term you would like explained as the argument.")]
     internal sealed class Explain: BaseCommandModuleCustom

@@ -1,10 +1,12 @@
 ﻿using System.Threading.Tasks;
 using DSharpPlus.CommandsNext;
 using DSharpPlus.CommandsNext.Attributes;
+using CompatBot.EventHandlers;
 
 namespace CompatBot.Commands
 {
     [Group("ama"), Hidden]
+    [BlacklistCheck]
     [Description("Provides information about the RPCS3 AMA event.")]
     internal sealed class Rpcs3Ama: EventsBaseCommand
     {

@@ -20,12 +20,14 @@ using Microsoft.Extensions.Caching.Memory;
 namespace CompatBot.Commands
 {
     [Group("stats")]
+    [BlacklistCheck]
     internal sealed class BotStats: BaseCommandModuleCustom
     {
         [GroupCommand, Cooldown(1, 10, CooldownBucketType.Global)]
         [Description("Use to look at various runtime stats.")]
         public async Task Show(CommandContext ctx)
         {
+            Config.Log.Info(System.Environment.StackTrace);
             var embed = new DiscordEmbedBuilder
                 {
                     Color = DiscordColor.Purple,

@@ -7,6 +7,7 @@ using CompatBot.Database;
 using CompatBot.Database.Providers;
 using CompatBot.Utils;
 using DSharpPlus.CommandsNext;
+using CompatBot.EventHandlers;
 using DSharpPlus.CommandsNext.Attributes;
 
 namespace CompatBot.Commands
@@ -19,6 +20,7 @@ namespace CompatBot.Commands
         private static readonly Regex Channel = new Regex(@"(?<id><#\d+>)", RegexOptions.ExplicitCapture | RegexOptions.Singleline);
 
         [Group("fix"), Hidden]
+        [BlacklistCheck]
         [Description("Commands to fix various stuff")]
         public sealed class Fix: BaseCommandModuleCustom
         {

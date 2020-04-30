@@ -18,6 +18,7 @@ using PsnClient.POCOs;
 namespace CompatBot.Commands
 {
     [Group("psn")]
+    [BlacklistCheck]
     [Description("Commands related to PSN metadata will be displayed.")]
     internal sealed partial class Psn: BaseCommandModuleCustom
     {

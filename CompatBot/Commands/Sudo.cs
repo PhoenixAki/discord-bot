@@ -7,6 +7,7 @@ using CompatBot.Commands.Converters;
 using CompatBot.Database;
 using CompatBot.Utils;
 using DSharpPlus;
+using CompatBot.EventHandlers;
 using DSharpPlus.CommandsNext;
 using DSharpPlus.CommandsNext.Attributes;
 using DSharpPlus.Entities;
@@ -15,6 +16,7 @@ using Microsoft.EntityFrameworkCore;
 namespace CompatBot.Commands
 {
     [Group("sudo"), RequiresBotSudoerRole]
+    [BlacklistCheck]
     [Description("Used to manage bot moderators and sudoers. An ultimate command, if you will.")]
     internal sealed partial class Sudo : BaseCommandModuleCustom
     {

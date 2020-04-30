@@ -2,10 +2,12 @@
 using CompatBot.Commands.Attributes;
 using DSharpPlus.CommandsNext;
 using DSharpPlus.CommandsNext.Attributes;
+using CompatBot.EventHandlers;
 
 namespace CompatBot.Commands
 {
     [Group("e3")]
+    [BlacklistCheck]
     [Description("Provides information about the E3 event.")]
     internal sealed class E3: EventsBaseCommand
     {
