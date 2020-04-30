@@ -44,21 +44,13 @@ namespace CompatBot
         // these settings could be configured either through `$ dotnet user-secrets`, or through environment variables (e.g. launchSettings.json, etc)
         public static string CommandPrefix => config.GetValue(nameof(CommandPrefix), "!");
         public static string AutoRemoveCommandPrefix => config.GetValue(nameof(AutoRemoveCommandPrefix), ".");
-<<<<<<< HEAD
-        public static ulong BotGuildId => config.GetValue(nameof(BotGuildId), 272035812277878785ul);                  // discord server where the bot is supposed to be
-=======
         public static ulong BotGuildId => config.GetValue(nameof(BotGuildId), 701209559930503230ul);                  // discord server where the bot is supposed to be
->>>>>>> master
         public static ulong BotGeneralChannelId => config.GetValue(nameof(BotGeneralChannelId), 701209560647467061ul);// #rpcs3; main or general channel where noobs come first thing
         public static ulong BotChannelId => config.GetValue(nameof(BotChannelId), 701209560647467061ul);              // #build-updates; this is used for new build announcements
         public static ulong BotSpamId => config.GetValue(nameof(BotSpamId), 701209560647467061ul);                    // #bot-spam; this is a dedicated channel for bot abuse
         public static ulong BotLogId => config.GetValue(nameof(BotLogId), 701209560647467061ul);                      // #bot-log; a private channel for admin mod queue
         public static ulong BotRulesChannelId => config.GetValue(nameof(BotRulesChannelId), 701209560647467061ul);    // #rules-info; used to give links to rules
-<<<<<<< HEAD
         public static ulong ThumbnailSpamId => config.GetValue(nameof(ThumbnailSpamId), 701209560647467061ul);        // #bot-data; used for whatever bot needs to keep (cover embeds, etc)
-=======
-        public static ulong ThumbnailSpamId => config.GetValue(nameof(ThumbnailSpamId), 475678410098606100ul);        // #bot-data; used for whatever bot needs to keep (cover embeds, etc)
->>>>>>> master
         public static ulong BotAdminId => config.GetValue(nameof(BotAdminId), 267367850706993152ul);                  // discord user id for a bot admin
         public static int ProductCodeLookupHistoryThrottle => config.GetValue(nameof(ProductCodeLookupHistoryThrottle), 7);
         public static int TopLimit => config.GetValue(nameof(TopLimit), 15);
