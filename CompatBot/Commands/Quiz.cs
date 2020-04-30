@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 using DSharpPlus.CommandsNext;
 using DSharpPlus.CommandsNext.Attributes;
 using DSharpPlus.Interactivity;
+using DSharpPlus.Entities;
 
 namespace CompatBot.Commands
 {
@@ -55,7 +56,17 @@ namespace CompatBot.Commands
 
             if(correct == questions.Length)
             {
-                //TODO: inform user of success and add Verified role to user 
+                var ToSmsg = await ctx.RespondAsync("Congrats! You've been granted access to the server! Please click the thumbs up to continue.");
+                var thumbsUp = DiscordEmoji.FromName(ctx.Client, ":thumbsup:");
+                await ToSmsg.CreateReactionAsync(thumbsUp).ConfigureAwait(false);
+                var emojiResult = await interact.WaitForReactionAsync(x => x.Message == ToSmsg && x.User == ctx.User && x.Emoji == thumbsUp).ConfigureAwait(false);
+                if(emojiResult.Result.Emoji == thumbsUp)
+                {
+                    var verifiedRole = ctx.Guild.GetRole(704122650015957145);
+                    await ctx.Member.GrantRoleAsync(verifiedRole);
+                    await ToSmsg.DeleteAsync().ConfigureAwait(false);
+                }
+                
             }
             else
             {
