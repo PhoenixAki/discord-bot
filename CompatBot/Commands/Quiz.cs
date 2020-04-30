@@ -1,9 +1,7 @@
-using System;
 using System.Threading.Tasks;
 using DSharpPlus.CommandsNext;
 using DSharpPlus.CommandsNext.Attributes;
 using DSharpPlus.Interactivity;
-using DSharpPlus.Entities;
 
 namespace CompatBot.Commands
 {
@@ -12,62 +10,56 @@ namespace CompatBot.Commands
     internal sealed class Quiz: BaseCommandModuleCustom
     {
         [GroupCommand]
-        public async Task QuestionOne(CommandContext ctx)
+        public async Task Verification(CommandContext ctx)
         {
-            bool repeat = true;
+            string[] questions = {
+                "For questions that aren't answered in the FAQ, should you only ask for help in the #help channel?",
+                "Is it okay to ask or inform where to download pirated copies of games?",
+                "Are spoilers ever okay to use within any server chat?",
+                "Is it okay to engage in vote manipulation in Reddit content within this server?",
+                "Do you agree to abide by RPCS3's rules and community guidelines, and the Discord TOS?"
+            };
+
+            string[] answers = {
+                "yes",
+                "no",
+                "yes",
+                "no",
+                "yes"
+            };
+
+            int correct = 0;
             var interact = ctx.Client.GetInteractivity();
-            while(repeat) 
+
+            for(int question = 0; question < questions.Length; ++question)
             {
-                var botMsg = await ctx.RespondAsync("Please type your name.");
+                var botMsg = await ctx.RespondAsync(questions[question]);
                 var msg = await interact.WaitForMessageAsync(m => m.Author == ctx.User && m.Channel == ctx.Channel && !string.IsNullOrEmpty(m.Content)).ConfigureAwait(false);
                 await botMsg.DeleteAsync().ConfigureAwait(false);
 
                 if(!string.IsNullOrEmpty(msg.Result.Content))
                 {
-                    Console.WriteLine(msg.Result.Content);
-                    var check = "Is " + msg.Result.Content.ToString() + " your name?";
-                    botMsg = await ctx.RespondAsync(check);
-                    msg = await interact.WaitForMessageAsync(m => m.Author == ctx.User && m.Channel == ctx.Channel && !string.IsNullOrEmpty(m.Content)).ConfigureAwait(false);
-                    if(msg.Result.Content.ToString().ToLower() == "yes") 
+                    if(msg.Result.Content.ToLower() == answers[question])
                     {
-                        Console.WriteLine("Valid Name");
-                        var embeddedAssignment = new DiscordEmbedBuilder
-                        {
-                            Title = "Do you agree to the ToS?"
-                        };
-                        var ToSmsg = await ctx.Channel.SendMessageAsync(embed: embeddedAssignment).ConfigureAwait(false);
-
-                        var thumbsUp = DiscordEmoji.FromName(ctx.Client, ":thumbsup:");
-                        var thumbsDown = DiscordEmoji.FromName(ctx.Client, ":thumbsdown:");
-                        await ToSmsg.CreateReactionAsync(thumbsUp).ConfigureAwait(false);
-                        await ToSmsg.CreateReactionAsync(thumbsDown).ConfigureAwait(false);
-
-                        var emojiResult = await interact.WaitForReactionAsync(x => x.Message == ToSmsg && x.User == ctx.User && (x.Emoji == thumbsUp || x.Emoji == thumbsDown)).ConfigureAwait(false);
-                    
-                        if(emojiResult.Result.Emoji == thumbsUp) 
-                        {
-                            Console.WriteLine("Reacted to emoji");
-                            var roleId = ctx.Guild.GetRole(704089126844104866);
-                            await ctx.Member.GrantRoleAsync(roleId).ConfigureAwait(false);
-                            await ToSmsg.DeleteAsync().ConfigureAwait(false);
-                        }
-                        else
-                        {
-                            var roleId = ctx.Guild.GetRole(704089126844104866);
-                            await ctx.Member.RevokeRoleAsync(roleId).ConfigureAwait(false);
-                            await ToSmsg.DeleteAsync().ConfigureAwait(false);
-                        }
-                        repeat = false;
-                    }
-                    else
-                    {
-                        await ctx.RespondAsync("Try again.").ConfigureAwait(false);
+                        correct++;
                     }
                 }
                 else
                 {
+                    await ctx.RespondAsync("Format issue with your response - start over and try again");
                     return;
                 }
+            }
+
+            await ctx.RespondAsync("You got " + questions + " out of " + questions.Length + " questions correct!");
+
+            if(correct == questions.Length)
+            {
+                //TODO: inform user of success and add Verified role to user 
+            }
+            else
+            {
+                //TODO: inform user of failure and tell them to try again
             }
         }
     }
