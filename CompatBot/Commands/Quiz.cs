@@ -32,7 +32,9 @@ namespace CompatBot.Commands
             int correct = 0;
             var interact = ctx.Client.GetInteractivity();
 
-            for(int question = 0; question < questions.Length; ++question)
+            await ctx.RespondAsync("You'll be asked a series of questions, please respond with either a 'yes' or a 'no'.");
+
+            for (int question = 0; question < questions.Length; ++question)
             {
                 var botMsg = await ctx.RespondAsync(questions[question]);
                 var msg = await interact.WaitForMessageAsync(m => m.Author == ctx.User && m.Channel == ctx.Channel && !string.IsNullOrEmpty(m.Content)).ConfigureAwait(false);
@@ -70,7 +72,7 @@ namespace CompatBot.Commands
             }
             else
             {
-                //TODO: inform user of failure and tell them to try again
+                await ctx.RespondAsync("Sorry, you got" + (questions.Length - correct) + " out of " + questions.Length + " wrong.  Please reread the rules and retake the quiz.");
             }
         }
     }
