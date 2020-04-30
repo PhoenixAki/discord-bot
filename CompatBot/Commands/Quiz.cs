@@ -11,7 +11,12 @@ namespace CompatBot.Commands
     internal sealed class Quiz: BaseCommandModuleCustom
     {
         [GroupCommand]
-        public async Task Verification(CommandContext ctx)
+        public async Task Start(CommandContext ctx)
+        {
+            await Task.WhenAll(Quiz.Verification(ctx));
+        }
+
+        internal static async Task Verification(CommandContext ctx)
         {
             string[] questions = {
                 "For questions that aren't answered in the FAQ, should you only ask for help in the #help channel?",
@@ -32,12 +37,18 @@ namespace CompatBot.Commands
             int correct = 0;
             var interact = ctx.Client.GetInteractivity();
 
-            await ctx.RespondAsync("You'll be asked a series of questions, please respond with either a 'yes' or a 'no'.");
+            await ctx.RespondAsync("You'll be asked a series of questions, please respond with either a \"yes\" or a \"no\".");
 
             for (int question = 0; question < questions.Length; ++question)
             {
                 var botMsg = await ctx.RespondAsync(questions[question]);
                 var msg = await interact.WaitForMessageAsync(m => m.Author == ctx.User && m.Channel == ctx.Channel && !string.IsNullOrEmpty(m.Content)).ConfigureAwait(false);
+                while(msg.Result.Content.ToLower() != "yes" && msg.Result.Content.ToLower() != "no")
+                {
+                    await ctx.RespondAsync("Please answer with \"yes\" or \"no\".");
+                    await ctx.RespondAsync(questions[question]);
+                    msg = await interact.WaitForMessageAsync(m => m.Author == ctx.User && m.Channel == ctx.Channel && !string.IsNullOrEmpty(m.Content)).ConfigureAwait(false);
+                }
                 await botMsg.DeleteAsync().ConfigureAwait(false);
 
                 if(!string.IsNullOrEmpty(msg.Result.Content))
@@ -52,9 +63,10 @@ namespace CompatBot.Commands
                     await ctx.RespondAsync("Format issue with your response - start over and try again");
                     return;
                 }
+                await msg.Result.DeleteAsync().ConfigureAwait(false);
             }
 
-            await ctx.RespondAsync("You got " + questions + " out of " + questions.Length + " questions correct!");
+            await ctx.RespondAsync("You got " + correct + " out of " + questions.Length + " questions correct!");
 
             if(correct == questions.Length)
             {
@@ -72,7 +84,7 @@ namespace CompatBot.Commands
             }
             else
             {
-                await ctx.RespondAsync("Sorry, you got" + (questions.Length - correct) + " out of " + questions.Length + " wrong.  Please reread the rules and retake the quiz.");
+                await ctx.RespondAsync("Sorry, you got " + (questions.Length - correct) + " out of " + questions.Length + " wrong.  Please reread the rules and retake the quiz.");
             }
         }
     }
