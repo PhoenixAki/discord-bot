@@ -11,29 +11,23 @@ using DSharpPlus;
 namespace CompatBot.Commands
 {
     [Group("allroles")]
-    [Description("Description")]
+    [Description("Lists all of the roles a member has.")]
     internal sealed class SyncRoles: BaseCommandModuleCustom
     {
         [GroupCommand]
         public async Task getRoles(CommandContext ctx)
         {
             var userRoles = ctx.Member.Roles.ToList();
-            Console.WriteLine(userRoles);
             if(userRoles.Any())
             {
-                var ids = "";
-                var names = "";
+                await ctx.RespondAsync("**Roles Names (and IDs):**");
+                string final_output = "";
                 for (int i = 0; i < userRoles.Count; i++)
                 {
-                    Console.WriteLine(userRoles[i]);
-                    var id_line = userRoles[i].Id + "\n";
-                    var name_line = userRoles[i].Name + "\n";
-                    ids += id_line;
-                    names += name_line;
+                    var role_info = ", " + userRoles[i].Name + " (" + userRoles[i].Id + ")";
+                    final_output += role_info;
                 }
-                await ctx.RespondAsync(ids);
-                await ctx.RespondAsync(names);
-                //await ctx.RespondAsync(GetAllMemberRoles(Config.Cts.Token));
+                await ctx.RespondAsync(final_output.Substring(2));
             }
         }
 
@@ -43,6 +37,7 @@ namespace CompatBot.Commands
                 var chan = await client.GetChannelAsync(Config.BotChannelId).ConfigureAwait(false);
                 var guilds = await client.GetGuildAsync(Config.BotGuildId).ConfigureAwait(false);
                 var users = await guilds.GetAllMembersAsync().ConfigureAwait(false);
+                var final_output = "**Users (and their roles)**:\n";
 
                 for(int i = 0; i < users.Count; i++)
                 {
@@ -51,10 +46,15 @@ namespace CompatBot.Commands
                     var stringRoles = "";
                     foreach(var role in roles)
                     {
-                        stringRoles += role.Name + "; ";
+                        stringRoles += ", " + role.Name;
                     }
-                    await chan.SendMessageAsync(user + " - " + stringRoles);
+                    if(stringRoles == "")
+                    {
+                        stringRoles = "No Roles";
+                    }
+                    final_output += user + " - " + stringRoles.Substring(2) + "\n";
                 }
+                await chan.SendMessageAsync(final_output);
             }
         }
     }
